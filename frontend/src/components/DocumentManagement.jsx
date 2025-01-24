@@ -33,7 +33,23 @@ const DocumentManagement = () => {
   const [loading, setLoading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState("");
   const [downloadLinks, setDownloadLinks] = useState({});
-  const URL = "http://localhost:3001/api/documents";
+  const URLs = [import.meta.env.VITE_URL_1, import.meta.env.VITE_URL_2];
+
+  const fetchWithFallback = async (url, options) => {
+    let error;
+    for (let i = 0; i < URLs.length; i++) {
+      try {
+        const res = await fetch(URLs[i] + url, options);
+        if (!res.ok) {
+          throw new Error(`Failed with status: ${res.status}`);
+        }
+        return res;
+      } catch (err) {
+        error = err;
+      }
+    }
+    throw error;
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -47,9 +63,7 @@ const DocumentManagement = () => {
       const dateFilter = selectedDate
         ? `&date=${dayjs(selectedDate).format("YYYY-MM-DD")}`
         : "";
-      const res = await fetch(
-        `${URL}/search?${query}${dateFilter}`
-      );
+      const res = await fetchWithFallback(`/search?${query}${dateFilter}`);
       const data = await res.json();
 
       if (res.ok) {
@@ -99,8 +113,8 @@ const DocumentManagement = () => {
     formData.append("file", selectedFile);
 
     try {
-      const res = await fetch(
-        `${URL}/s3pu-upload?filename=${selectedFile.name}&mimetype=${selectedFile.type}`,
+      const res = await fetchWithFallback(
+        `/s3pu-upload?filename=${selectedFile.name}&mimetype=${selectedFile.type}`,
         {
           method: "GET",
           headers: {
@@ -135,9 +149,7 @@ const DocumentManagement = () => {
 
   const handleDownload = async (filename) => {
     try {
-      const res = await fetch(
-        `${URL}/download/${filename}`
-      );
+      const res = await fetchWithFallback(`/download/${filename}`);
       const data = await res.json();
 
       if (res.ok && data.url) {
