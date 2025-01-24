@@ -108,8 +108,7 @@ const DocumentManagement = () => {
     formData.append("file", selectedFile);
 
     try {
-      const res = await fetch(`${URL}
-        /s3pu-upload?filename=${selectedFile.name}&mimetype=${selectedFile.type}`,
+      const res = await fetch(`${URL}/s3pu-upload?filename=${selectedFile.name}&mimetype=${selectedFile.type}`,
         {
           method: "GET",
           headers: {
