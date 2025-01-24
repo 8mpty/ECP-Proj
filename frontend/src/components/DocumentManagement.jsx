@@ -21,12 +21,9 @@ import {
   Description as FileIcon,
   Download as DownloadIcon,
 } from "@mui/icons-material";
-import { DatePicker } from "@mui/x-date-pickers";
-import dayjs from "dayjs";
 
 const DocumentManagement = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState("");
@@ -60,10 +57,7 @@ const DocumentManagement = () => {
 
     try {
       const query = `query=${encodeURIComponent(searchQuery)}`;
-      const dateFilter = selectedDate
-        ? `&date=${dayjs(selectedDate).format("YYYY-MM-DD")}`
-        : "";
-      const res = await fetchWithFallback(`/search?${query}${dateFilter}`);
+      const res = await fetchWithFallback(`/search?${query}`);
       const data = await res.json();
 
       if (res.ok) {
@@ -204,13 +198,6 @@ const DocumentManagement = () => {
             >
               Search
             </Button>
-            {/* <DatePicker
-              label="Filter by Upload Date"
-              value={selectedDate}
-              onChange={(newValue) => setSelectedDate(newValue)}
-              maxDate={dayjs()} // Disable future dates
-              renderInput={(params) => <TextField {...params} size="small" />}
-            /> */}
           </Box>
 
           {searchResults.length > 0 && (
