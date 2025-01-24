@@ -2,12 +2,14 @@ require("dotenv").config();
 const colors = require("colors");
 const express = require("express");
 const cors = require("cors");
+const documentRoutes = require('./routes/documents');
 const app = express();
-
 const port = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/documents', documentRoutes);
 
 app.get("/api/test", (req, res) => {
   console.log("🔵 GET Request to:".blue, "/api/test");
