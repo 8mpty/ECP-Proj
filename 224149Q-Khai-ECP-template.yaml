@@ -144,6 +144,20 @@ Resources:
         - Key: Name
           Value: allow-backend
 
+  FrontendSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow port 4321 access
+      VpcId: !Ref MainVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 4321
+          ToPort: 4321
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: allow-frontend
+
   NewKeyPair:
     Type: 'AWS::EC2::KeyPair'
     Properties:
