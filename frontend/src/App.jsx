@@ -13,8 +13,6 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import { getCurrentUser } from "aws-amplify/auth";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 Amplify.configure({
   Auth: {
@@ -30,6 +28,7 @@ Amplify.configure({
     },
   },
 });
+
 cognitoUserPoolsTokenProvider.setKeyValueStorage({
   setItem: (key, value) => {
     return localStorage.setItem(key, value);
@@ -153,7 +152,6 @@ const AppContent = () => {
   }
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Routes>
         <Route
           path="/login"
@@ -190,7 +188,6 @@ const AppContent = () => {
           element={<Navigate to={user ? "/dashboard" : "/login"} replace />}
         />
       </Routes>
-    </LocalizationProvider>
   );
 };
 
