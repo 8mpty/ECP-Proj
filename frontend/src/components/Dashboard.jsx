@@ -40,23 +40,6 @@ const Dashboard = ({ user, onLogout, onViewChange, currentView }) => {
       }}
     >
       <Toolbar>
-        <DashboardOutlined 
-          sx={{ 
-            mr: 2, 
-            color: 'primary.main',
-            fontSize: 28 
-          }} 
-        />
-        <Typography 
-          variant="h6" 
-          sx={{ 
-            color: 'primary.main',
-            fontWeight: 600
-          }}
-        >
-          Dashboard
-        </Typography>
-
         <Box sx={{ ml: 4, flexGrow: 1 }}>
           <Tabs 
             value={currentView} 
