@@ -1,5 +1,5 @@
 services:
-  ecp-backend:
+  ecp-frontend:
     image: ecp-frontend
     container_name: ecp-frontend
     ports:
