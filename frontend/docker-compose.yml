@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  ecp-backend:
+    image: ecp-frontend
+    container_name: ecp-frontend
+    ports:
+      - "4321:4321"
+    restart: always
