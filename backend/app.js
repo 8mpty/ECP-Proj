@@ -7,9 +7,9 @@ const app = express();
 const port = 3001;
 
 const corsOptions = {
-  origin: "*.amplifyapp.com",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: process.env.AWS_AMP_LINK,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
 
