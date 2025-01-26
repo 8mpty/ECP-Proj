@@ -6,12 +6,11 @@ const documentRoutes = require("./routes/documents");
 const app = express();
 const port = 3001;
 
-const corsOptions = {
-  origin: process.env.AWS_AMP_LINK,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: ["https://staging.d1xsq8al14obvv.amplifyapp.com"],
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+}));
 
 app.use(express.json());
 
