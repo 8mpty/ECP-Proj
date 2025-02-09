@@ -336,17 +336,18 @@ Resources:
 
   ElasticIP:
     Type: 'AWS::EC2::EIP'
+    DependsOn: AttachGateway
     Properties:
       Domain: vpc
       Tags:
         - Key: Name
-          Value: ECP-EIP-KHAI
+          Value: ECP-EIP-Khai
 
   IPAssociation:
     Type: 'AWS::EC2::EIPAssociation'
     Properties:
       InstanceId: !Ref MainEC2Instance
-      EIP: !Ref ElasticIP
+      AllocationId: !GetAtt ElasticIP.AllocationId
 
 Outputs:
   VPCId:
