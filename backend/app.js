@@ -7,9 +7,9 @@ const app = express();
 const port = 3001;
 
 app.use(cors({
-  origin: ["https://staging.d1xsq8al14obvv.amplifyapp.com"],
+  origin: "*",
   methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
+  allowedHeaders: "Content-Type,Authorization,Access-Control-Allow-Origin",
 }));
 
 app.use(express.json());

@@ -33,22 +33,6 @@ const DocumentManagement = () => {
   // const URL = import.meta.env.VITE_URL_1
   const URL = import.meta.env.VITE_URL_2
 
-  // const fetchWithFallback = async (url, options) => {
-  //   let error;
-  //   for (let i = 0; i < URLs.length; i++) {
-  //     try {
-  //       const res = await fetch(URLs[i] + url, options);
-  //       if (!res.ok) {
-  //         throw new Error(`Failed with status: ${res.status}`);
-  //       }
-  //       return res;
-  //     } catch (err) {
-  //       error = err;
-  //     }
-  //   }
-  //   throw error;
-  // };
-
   const handleSearch = async (e) => {
     e.preventDefault();
 
