@@ -35,14 +35,17 @@ const DocumentManagement = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
     setLoading(true);
     setError("");
     setSearchResults([]);
 
     try {
-      const query = `query=${encodeURIComponent(searchQuery)}`;
-      const res = await fetch(`/api/documents/search?${query}`);
+      // Remove any leading or trailing spaces from searchQuery
+      const trimmedQuery = searchQuery.trim();
+      // Construct the URL without a trailing slash
+      const searchURL = `/api/documents/search${trimmedQuery ? `?query=${encodeURIComponent(trimmedQuery)}` : ''}`;
+      
+      const res = await fetch(searchURL);
       const data = await res.json();
 
       if (res.ok) {
