@@ -25,7 +25,7 @@ app.get("/api/test", (req, res) => {
   });
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0' ,() => {
   console.log("\n🚀 Server is running!".green);
   console.log("URL: ".yellow, `http://localhost:${port}/api/test`.blue);
   console.log("\nPress Ctrl+C to stop the server\n".gray);

@@ -42,7 +42,7 @@ const DocumentManagement = () => {
 
     try {
       const query = `query=${encodeURIComponent(searchQuery)}`;
-      const res = await fetch(`${URL}/search?${query}`);
+      const res = await fetch(`/api/documents/search?${query}`);
       const data = await res.json();
 
       if (res.ok) {

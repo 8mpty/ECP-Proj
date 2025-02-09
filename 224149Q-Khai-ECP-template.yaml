@@ -208,7 +208,7 @@ Resources:
           git clone https://github.com/8mpty/ECP-Proj.git
           cd ECP-Proj/
           git config --global --add safe.directory /home/ubuntu/ECP-Proj
-          git checkout developement
+          git checkout development
           cd backend/
           cp .env.dev .env
           npm i
