@@ -163,7 +163,7 @@ const AppContent = () => {
             )
           }
         />
-        <Route
+        {/* <Route
           path="/register"
           element={
             user ? (
@@ -172,7 +172,7 @@ const AppContent = () => {
               <RegisterPage onRegister={() => navigate("/login")} />
             )
           }
-        />
+        /> */}
         <Route
           path="/dashboard"
           element={
