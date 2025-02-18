@@ -40,12 +40,8 @@ const DocumentManagement = () => {
     setSearchResults([]);
 
     try {
-      // Remove any leading or trailing spaces from searchQuery
-      const trimmedQuery = searchQuery.trim();
-      // Construct the URL without a trailing slash
-      const searchURL = `/api/documents/search${trimmedQuery ? `?query=${encodeURIComponent(trimmedQuery)}` : ''}`;
-      
-      const res = await fetch(searchURL);
+      const query = `query=${encodeURIComponent(searchQuery)}`;
+      const res = await fetch(`${URL}/search?${query}`);
       const data = await res.json();
 
       if (res.ok) {
@@ -135,7 +131,7 @@ const DocumentManagement = () => {
 
       if (res.ok && data.url) {
         alert(
-          "Note: This presigned URL will expire in 3 minutes. Use it to download the file."
+          "Note: This presigned URL will expire in 1 minutes. Use it to download the file."
         );
         setDownloadLinks((prev) => ({
           ...prev,
@@ -228,7 +224,7 @@ const DocumentManagement = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                Download Link (expires in 3 minutes)
+                                Download Link (expires in 1 minutes)
                               </Link>
                             </Box>
                           )}
