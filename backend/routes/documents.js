@@ -16,7 +16,7 @@ router.get("/s3pu-upload", async (req, res) => {
   const s3Params = {
     Bucket: BUCKET_NAME,
     Key: req.query.filename,
-    Expires: 60 * 60,
+    Expires: 20,
     ContentType: req.query.mimetype,
   };
   const url = await s3.getSignedUrl("putObject", s3Params);
